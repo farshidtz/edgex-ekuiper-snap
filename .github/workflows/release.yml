@@ -29,7 +29,9 @@ jobs:
 #           body: ${{ github.event.inputs.tag_name }}
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Checkout
+        uses: actions/checkout@v2
+        
       - name: Tag with annotation
         run: |
           git tag -a ${{ github.event.inputs.tag_name }} -m "${{ github.event.inputs.tag_name }}"
