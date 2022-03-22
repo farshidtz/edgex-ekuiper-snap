@@ -26,5 +26,6 @@ jobs:
         uses: avakar/tag-and-release@v1
         with:
           tag_name: ${{ github.event.inputs.tag_name }}
+          body: ${{ github.event.inputs.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
