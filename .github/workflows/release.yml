@@ -32,15 +32,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: Tag with annotation
-        run: |
-          git tag -a ${{ github.event.inputs.tag_name }} -m "${{ github.event.inputs.tag_name }}"
+#       - name: Tag with annotation
+#         run: |
+#           git tag -a ${{ github.event.inputs.tag_name }} -m "${{ github.event.inputs.tag_name }}"
           
-      - name: Push tag
-        uses: ad-m/github-push-action@master
+#       - name: Push tag
+#         uses: ad-m/github-push-action@master
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           tags: true
+          
+      - uses: rickstaa/action-create-tag@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tags: true
+          tag: ${{ github.event.inputs.tag_name }}
           
       - name: Release
         uses: softprops/action-gh-release@v1
