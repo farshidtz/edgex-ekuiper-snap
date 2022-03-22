@@ -1,4 +1,4 @@
-name: Tag & Release
+name: Release
 
 on: 
   workflow_dispatch:
@@ -22,27 +22,11 @@ jobs:
             exit 1
           fi
 
-#       - name: Tag and release
-#         uses: avakar/tag-and-release@v1
-#         with:
-#           tag_name: ${{ github.event.inputs.tag_name }}
-#           body: ${{ github.event.inputs.tag_name }}
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
-        
-#       - name: Tag with annotation
-#         run: |
-#           git tag -a ${{ github.event.inputs.tag_name }} -m "${{ github.event.inputs.tag_name }}"
           
-#       - name: Push tag
-#         uses: ad-m/github-push-action@master
-#         with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           tags: true
-          
-      - uses: rickstaa/action-create-tag@v1
+      - name: Tag (annotated)
+        uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ github.event.inputs.tag_name }}
           
